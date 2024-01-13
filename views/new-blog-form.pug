@@ -1,0 +1,36 @@
+extends layout
+
+block content
+    div.form_container
+        h1= title
+        form(method='POST' action='' enctype="multipart/form-data").form_main
+            div.form_group
+                label(for='title') Title:
+                input#title(type="text" name="title" minlength='2' required='true' value=(posts === undefined ? "" : posts.title))
+            div.form_group
+                label(for='caption') Caption:
+                textarea#caption(name='caption' minlength='2' rows='5' required='true')
+                    != (posts === undefined ? '' : posts.caption)
+            div.form_group
+                label(for='content') Content:
+                textarea#content(name='content' minlength='2' rows='10' required='true')
+                    != (posts === undefined ? '' : posts.content)
+            div.form-group
+                label(for='image') Image:
+                input#image.form-control-file(type='file', name='image')
+
+            div.form_group
+                label Post Visibility:
+                div
+                    label(for='publicPost') Public
+                    input(type="radio" id="publicPost" name="postVisibility" value="public" checked)
+                    
+                    label(for='privatePost') Private
+                    input(type="radio" id="privatePost" name="postVisibility" value="private")
+
+            button(type="submit") Post
+
+        if errors
+            ul.error_field
+                for error in errors
+                    li!= error.msg

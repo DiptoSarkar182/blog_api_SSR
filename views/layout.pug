@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    nav 
+      a(href="/").header Movie Blogs
+      if currentUser
+        ul 
+          li.greeting Welcome Back, #{currentUser.username}
+          li 
+            a(href="/create-blog") Create blog
+          li
+              a(href="/my-account") My Account
+          li
+            a(href="/logout").logout Logout
+
+      else 
+        ul 
+          li 
+            a(href="/login") Login
+          li 
+            a(href="/sign-up") signUP
+        
+    block content

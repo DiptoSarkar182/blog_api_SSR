@@ -1,0 +1,24 @@
+extends layout 
+
+block content
+  div.form_container
+    h1= title 
+    form(method='POST' action='').form_main
+        div.form_group
+            label(for='username') Username: 
+            input#username(type='text' name='username' minlength='4' maxlength='18' required='true' value=(user === undefined ? "" : user.username))
+
+        div.form_group
+            label(for='email') Email: 
+            input#email(type='email' name='email'   maxlength='50' required='true' value=(user === undefined ? "" : user.email))
+        
+        div.form_group
+            label(for='password') Password: 
+            input#password(type='password' name='password' minlength='6' required='true' value=(user === undefined ? "" : user.password))
+        
+        button(type='submit') Sign Up
+
+    if errors 
+      ul.error_field
+       for error in errors 
+         li!= error.msg

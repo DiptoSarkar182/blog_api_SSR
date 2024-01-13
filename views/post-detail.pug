@@ -1,0 +1,52 @@
+extends layout
+
+block content
+
+  
+  if currentUser  
+    div.post_card.post_card_member
+      h1!=posts.title
+      img(src=posts.files[0].url, alt="Image", style="max-width: 100%;")
+      div.user_details
+        span.username By #{posts.user.username},
+      
+      div.date= posts.timestamp_formatted
+      - if (posts.likes.includes(currentUser._id))
+        a(href=`${posts.post_url_like}/dislike-blog`) (#{totalLikes}) Dislike it
+      - else
+        a(href=`${posts.post_url_like}/like-blog`) (#{totalLikes}) Like it
+      hr
+      div.content!= posts.content
+        if comments.length > 0
+          div.comments
+            h3 Comments:
+            each comment in comments
+              div.comment
+                if (comment.user.id == currentUser.id)
+                  span.comment-author #{comment.user.username}:#{' '}
+                  span.comment-text !{comment.content}
+                  a(href=`/delete-comment/${comment._id}`) Delete
+                  br
+                  span.comment-time #{comment.timestamp_formatted}
+                else
+                  span.comment-author #{comment.user.username}:#{' '}
+                  span.comment-text !{comment.content}
+                  br
+                  span.comment-time #{comment.timestamp_formatted}
+      form(method='POST' action='').form_comment
+        h3 Comments
+        div.comment_group
+            label(for='comment') Add comment: 
+            input#comment(type='text' name='comment' required='true' )
+        button(type='submit') Submit
+  else
+    div.post_card.post_card_member
+      h1=posts.title
+      img(src=posts.files[0].url, alt="Image", style="max-width: 100%;")
+      div.user_details
+        span.username By #{posts.user.username},
+      div.title= posts.title
+      div.date= posts.timestamp_formatted
+      p You need to be logged in to like and comment on the post.
+      hr
+      div.content!= posts.content
