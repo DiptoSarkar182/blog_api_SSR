@@ -99,7 +99,7 @@ exports.my_account_get = async(req,res,next)=>{
         const posts = await Post.find({ user: req.user.id }).sort({ dateCreated: -1 });
 
         return res.render("my-account-page", {
-            title: "What you posted",
+            title: "Post History",
             posts: posts,
         });
     } catch (error) {

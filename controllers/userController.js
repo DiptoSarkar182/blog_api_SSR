@@ -40,12 +40,12 @@ exports.sign_up_post = [
       .isLength({ min: 6 })
       .escape(),
 
-    // body("confirmPassword").custom((value, { req }) => {
-    //   if (value !== req.body.password) {
-    //     throw new Error("Passwords do not match");
-    //   }
-    //   return true;
-    // }),
+    body("confirmPassword").custom((value, { req }) => {
+      if (value !== req.body.password) {
+        throw new Error("Passwords do not match");
+      }
+      return true;
+    }),
 
     async (req, res, next) => {
       const errors = validationResult(req);

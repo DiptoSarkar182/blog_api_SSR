@@ -1,15 +1,15 @@
 extends layout
 
 block content
-  h1 Home page
+
   each post in posts
     if !post.isPrivate
-      div.post_card.post_card_member
-        img(src=post.files[0].url, alt="Image", style="max-width: 100%;")
-        div.user_details
-          span.username By #{post.user.username},
-        div.title!= post.title
-        div.date= post.timestamp_formatted
+      div.home_page_container
+        img.home_page_img(src=post.files[0].url, alt="Image", style="max-width: 100%;")
+        div.home_page_user_details
+          span.home_page_username By #{post.user.username},
+        div.home_page_title!= post.title
+        div.home_page_date= post.timestamp_formatted
         hr
-        div.caption!= post.caption
-        a(href=`${post.id}/post-detail`) Read Blog
+        div.home_page_caption!= post.caption
+        a.home_page_read_blog(href=`${post.id}/post-detail`) Read Blog

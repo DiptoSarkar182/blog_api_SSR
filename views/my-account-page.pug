@@ -1,34 +1,34 @@
 extends layout
 
 block content
-  h1=title
-  div.post_container
+  h1.my_account_page_title=title
+  div.my_account_page_post_container
     - if (posts.length === 0)
-      p Oh, you have not posted yet.
+      p.my_account_page_p1 Oh, you have not posted yet.
     - else
       - for (const post of posts)
-        div.post_card.post_card_member
-          img(src=post.files[0].url, alt="Image", style="max-width: 100%;")
-          div.title!= post.title
-          div.date #{post.timestamp_formatted}
+        div.my_account_page_container
+          img.my_account_page_image(src=post.files[0].url, alt="Image", style="max-width: 100%;")
+          div.my_account_page_postTitle!= post.title
+          div.my_account_page_date #{post.timestamp_formatted}
           hr
-          div.total-likes Total Likes: #{post.likes.length}
+          div.my_account_page_total_likes Total Likes: #{post.likes.length}
           hr
-          div.caption!= post.caption
+          div.my_account_page_caption!= post.caption
           hr
-          div.content!= post.content
+          div.my_account_page_content!= post.content
           hr
-          div
+          div.my_account_page_postPrivacy
             if post.isPrivate
-              p This is a private post, not published
+              p.my_account_page_privatePost This is a private post, not published
             else
-              p This is a public post
+              p.my_account_page_publicPost This is a public post
           hr
-          p
+          p.my_account_page_deletePost
             a(href=`${post.post_url}/delete`) Delete Post
-          p
+          p.my_account_page_editPost
             a(href=`${post.post_url}/edit-post`) Edit Post
           if post.isPrivate
-            a(href=`${post.post_url}/post-privacy`) Make it Public
+            a.my_account_page_publicButton(href=`${post.post_url}/post-privacy`) Make it Public
           else
-            a(href=`${post.post_url}/post-privacy`) Make it Private
+            a.my_account_page_privateButton(href=`${post.post_url}/post-privacy`) Make it Private

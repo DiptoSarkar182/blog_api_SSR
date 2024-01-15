@@ -1,34 +1,33 @@
 extends layout
 
 block content
-    div.form_container
+    div.new_blog_form_container
         h1= title
-        form(method='POST' action='' enctype="multipart/form-data").form_main
-            div.form_group
+        form(method='POST' action='' enctype="multipart/form-data").new_blog_form_main
+            div.new_blog_form_title
                 label(for='title') Title:
                 input#title(type="text" name="title" minlength='2' required='true' value=(posts === undefined ? "" : posts.title))
-            div.form_group
+            div.new_blog_form_caption
                 label(for='caption') Caption:
                 textarea#caption(name='caption' minlength='2' rows='5' required='true')
                     != (posts === undefined ? '' : posts.caption)
-            div.form_group
+            div.new_blog_form_content
                 label(for='content') Content:
                 textarea#content(name='content' minlength='2' rows='10' required='true')
                     != (posts === undefined ? '' : posts.content)
-            div.form-group
-                label(for='image') Image:
+            div.form-new_blog_form_image
+                label(for='image') Image (Max Size Limit 5 MB):
                 input#image.form-control-file(type='file', name='image')
 
-            div.form_group
-                label Post Visibility:
-                div
-                    label(for='publicPost') Public
-                    input(type="radio" id="publicPost" name="postVisibility" value="public" checked)
-                    
-                    label(for='privatePost') Private
-                    input(type="radio" id="privatePost" name="postVisibility" value="private")
+            div.new_blog_form_postVisibility
+                label.new_blog_form_title Post Visibility:
+                div.new_blog_form_postVisibility_container
+                    input.new_blog_form_publicInput(type="radio" id="publicPost" name="postVisibility" value="public" checked)
+                    label.new_blog_form_public(for='publicPost') Public
+                    input.new_blog_form_privateInput(type="radio" id="privatePost" name="postVisibility" value="private")
+                    label.new_blog_form_private(for='privatePost') Private
 
-            button(type="submit") Post
+            button.new_blog_form_button(type="submit") Post
 
         if errors
             ul.error_field

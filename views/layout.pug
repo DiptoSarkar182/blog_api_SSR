@@ -1,26 +1,26 @@
 doctype html
 html
   head
-    title= title
+    title.layout_title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    nav 
-      a(href="/").header Movie Blogs
+    nav.layout_nav
+      a.layout_a(href="/").header Movie Blogs
       if currentUser
-        ul 
-          li.greeting Welcome Back, #{currentUser.username}
-          li 
+        ul.layout_ul
+          li.layout_greeting Hello, #{currentUser.username}
+          li.layout_create_blog
             a(href="/create-blog") Create blog
-          li
+          li.layout_my_account
               a(href="/my-account") My Account
-          li
+          li.layout_logout
             a(href="/logout").logout Logout
 
       else 
         ul 
-          li 
+          li.layout_login
             a(href="/login") Login
-          li 
+          li.layout_signup
             a(href="/sign-up") signUP
         
     block content

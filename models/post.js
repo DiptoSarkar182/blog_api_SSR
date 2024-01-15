@@ -10,10 +10,10 @@ const PostSchema = new Schema({
     },
     content: { type: String },
     dateCreated: {
-        type: Date,
-        default: Date.now,
-        required: true,
-    },
+      type: Date,
+      default: () => new Date(),
+      required: true,
+  },
     user: {
       type: Schema.Types.ObjectId,
       ref: "User", required: true,
