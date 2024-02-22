@@ -52,6 +52,7 @@ exports.new_blog_post = [
     
                 const urls = []
                 const files = req.files; 
+                console.log(files);
                 for(const file of files){
                     const { path } = file; 
                     const newPath = await uploader(path)
