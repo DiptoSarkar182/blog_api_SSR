@@ -1,6 +1,6 @@
 # ExpressJS Blog Website
 
-This project is an ExpressJS-based blog website where users can perform various actions such as user registration, login, create blog posts, like posts, comment on posts, edit their own posts, delete posts, and toggle post visibility between public and private. The application is built as part of the curriculum for The Odin Project.
+This project is an ExpressJS-based blog website where users can perform various actions such as user registration, login, create blog posts, like posts, comment on posts, edit their own posts, delete posts, and toggle post visibility between public and private. 
 
 Live demo on https://blog-api-ssr.onrender.com. If this link takes too long to load, try this one https://blog-api-ssr.adaptable.app/
 
