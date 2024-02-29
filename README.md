@@ -6,8 +6,8 @@ Live demo on https://blog-api-ssr.onrender.com. If this link takes too long to l
 
 ## Screenshots
 
-![Home Page](./public/images/screenshots/Capture1.PNG)
-![Post Page](./public/images/screenshots/Capture2.PNG)
+![Home Page](./public/images/screenshots/s1.PNG)
+![Post Page](./public/images/screenshots/s2.PNG)
 
 ## Future Features
 
