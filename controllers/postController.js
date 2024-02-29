@@ -22,6 +22,10 @@ exports.post_list = async(req,res,next)=>{
 }
 
 exports.new_blog_get = (req,res,next)=>{
+
+    if(!req.user){
+        return res.redirect("/login");
+      }
     return res.render("new-blog-form", {
         title: "Create New blog",
     });
@@ -97,6 +101,9 @@ exports.new_blog_post = [
 exports.my_account_get = async(req,res,next)=>{
 
     try {
+        if(!req.user){
+            return res.redirect("/login");
+          }
         const posts = await Post.find({ user: req.user.id }).sort({ dateCreated: -1 });
 
         return res.render("my-account-page", {
@@ -111,6 +118,10 @@ exports.my_account_get = async(req,res,next)=>{
 
 exports.my_account_delete_get = async (req, res, next) => {
     try {
+
+        if(!req.user){
+            return res.redirect("/login");
+          }
         const postId = req.params.id;
 
         const post = await Post.findById(postId);
@@ -136,6 +147,9 @@ exports.my_account_delete_get = async (req, res, next) => {
 
 exports.post_privacy = async(req,res,next)=>{
     try {
+        if(!req.user){
+            return res.redirect("/login");
+          }
         const postId = req.params.id;
         const post = await Post.findById(postId);
 
@@ -151,6 +165,9 @@ exports.post_privacy = async(req,res,next)=>{
 
 exports.post_detail_get = async(req,res,next)=>{
     try {
+        if(!req.user){
+            return res.redirect("/login");
+          }
         const posts = await Post.findById(req.params.id).populate("user");
         const totalLikes = posts.likes.length;
 
@@ -168,6 +185,9 @@ exports.post_detail_get = async(req,res,next)=>{
 
 exports.post_like = async(req,res,next)=>{
     try {
+        if(!req.user){
+            return res.redirect("/login");
+          }
         const postId = req.params.id;
         const userId = req.user.id;
         const posts = await Post.findById(postId);
@@ -187,6 +207,9 @@ exports.post_like = async(req,res,next)=>{
 
 exports.post_dislike = async (req, res, next) => {
     try {
+        if(!req.user){
+            return res.redirect("/login");
+          }
         const postId = req.params.id;
         const userId = req.user.id;
         const posts = await Post.findById(postId);
@@ -234,6 +257,9 @@ exports.add_post_comment = [
 
 exports.delete_post_comment = async(req,res,next)=>{
     try {
+        if(!req.user){
+            return res.redirect("/login");
+          }
         const commentId = req.params.id;
         const comments = await Comment.findById(commentId);
         const postId = comments.post.toString();
@@ -246,6 +272,9 @@ exports.delete_post_comment = async(req,res,next)=>{
 
 exports.edit_post_get = async(req,res,next)=>{
     try {
+        if(!req.user){
+            return res.redirect("/login");
+          }
         const postId = req.params.id;
         const posts = await Post.findById(postId).populate("user");
         return res.render("new-blog-form",{

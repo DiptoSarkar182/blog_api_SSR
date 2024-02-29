@@ -97,6 +97,20 @@ exports.log_in_post = passport.authenticate(
 )
 
 
+exports.demo_user_get = async(req,res,next)=>{
+  const demoUsername = "Demo_User";
+  const demoUser = await User.findOne({username: demoUsername});
+  if (!demoUser) {
+    return res.redirect('/login');
+}
+req.logIn(demoUser, function(err) {
+    if (err) { 
+        return next(err); 
+    }
+    return res.redirect('/');
+});
+}
+
 
 exports.logout = (req,res,next)=>{
     req.logout((err)=>{

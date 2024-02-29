@@ -15,6 +15,7 @@ router.post("/sign-up", userController.sign_up_post);
 router.get("/logout", userController.logout);
 router.get("/login", userController.log_in_get);
 router.post("/login", userController.log_in_post);
+router.get("/demo-user", userController.demo_user_get);
 
 router.get("/create-blog", postController.new_blog_get);
 router.post("/create-blog", upload.array('image',1), postController.new_blog_post);
